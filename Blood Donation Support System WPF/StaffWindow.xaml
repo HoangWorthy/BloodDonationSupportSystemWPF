@@ -5,8 +5,321 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blood_Donation_Support_System_WPF"
         mc:Ignorable="d"
-        Title="StaffWindow" Height="450" Width="800">
+        Title="Blood Donation System - Staff Portal" Height="750" Width="1200"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#1976D2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+                    <TextBlock Text="🏥" FontSize="24" Margin="0,0,10,0"/>
+                    <TextBlock Text="Blood Donation Portal - Staff Management" 
+                              FontSize="20" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" 
+                           VerticalAlignment="Center" Margin="0,0,20,0">
+                    <TextBlock Name="StaffWelcomeText" Text="Chào mừng, Staff!" 
+                              Foreground="White" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                    <Button Name="StaffLogoutButton" Content="Đăng xuất" Background="#0D47A1" 
+                           Foreground="White" BorderThickness="0" Padding="15,8" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" Background="White">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="20,12"/>
+                </Style>
+            </TabControl.Resources>
+
+            <!-- Blog Management Tab -->
+            <TabItem Header="📰 Quản lý Blog">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Blog Management Header -->
+                    <Border Grid.Row="0" Background="#E3F2FD" CornerRadius="5" Padding="15" Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Quản lý bài viết Blog" FontSize="18" 
+                                      FontWeight="Bold" Foreground="#1976D2" VerticalAlignment="Center"/>
+                            <Button Grid.Column="1" Name="AddBlogButton" Content="+ Thêm bài viết mới" 
+                                   Background="#4CAF50" Foreground="White" BorderThickness="0" 
+                                   Padding="15,10" Cursor="Hand"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Blog List with CRUD -->
+                    <DataGrid Name="BlogDataGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                             CanUserAddRows="False" GridLinesVisibility="Horizontal" 
+                             HeadersVisibility="Column" Background="White">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Tiêu đề" Width="300" Binding="{Binding Title}"/>
+                            <DataGridTextColumn Header="Tác giả" Width="150" Binding="{Binding Author}"/>
+                            <DataGridTextColumn Header="Ngày tạo" Width="120" Binding="{Binding CreationDate}"/>
+                            <DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
+                            <DataGridTemplateColumn Header="Thao tác" Width="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Sửa" Background="#FF9800" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Xóa" Background="#F44336" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Xem" Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Blood Request Management Tab -->
+            <TabItem Header="🩸 Quản lý yêu cầu máu">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#FFEBEE" CornerRadius="5" Padding="15" Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Quản lý yêu cầu máu" FontSize="18" 
+                                      FontWeight="Bold" Foreground="#D32F2F" VerticalAlignment="Center"/>
+                            <Button Grid.Column="1" Name="AddBloodRequestButton" Content="+ Thêm yêu cầu mới" 
+                                   Background="#F44336" Foreground="White" BorderThickness="0" 
+                                   Padding="15,10" Cursor="Hand"/>
+                        </Grid>
+                    </Border>
+
+                    <DataGrid Name="BloodRequestDataGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                             CanUserAddRows="False" GridLinesVisibility="Horizontal">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Nhóm máu" Width="100" Binding="{Binding BloodType}"/>
+                            <DataGridTextColumn Header="Mức độ ưu tiên" Width="120" Binding="{Binding Urgency}"/>
+                            <DataGridTextColumn Header="Bệnh viện" Width="200" Binding="{Binding Hospital}"/>
+                            <DataGridTextColumn Header="Ngày tạo" Width="120" Binding="{Binding CreatedDate}"/>
+                            <DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
+                            <DataGridTemplateColumn Header="Thao tác" Width="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Sửa" Background="#FF9800" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Xóa" Background="#F44336" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Chi tiết" Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Donation Event Management Tab -->
+            <TabItem Header="📅 Quản lý sự kiện hiến máu">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#E8F5E8" CornerRadius="5" Padding="15" Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Quản lý sự kiện hiến máu" FontSize="18" 
+                                      FontWeight="Bold" Foreground="#4CAF50" VerticalAlignment="Center"/>
+                            <Button Grid.Column="1" Name="AddEventButton" Content="+ Tạo sự kiện mới" 
+                                   Background="#4CAF50" Foreground="White" BorderThickness="0" 
+                                   Padding="15,10" Cursor="Hand"/>
+                        </Grid>
+                    </Border>
+
+                    <DataGrid Name="EventDataGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                             CanUserAddRows="False" GridLinesVisibility="Horizontal">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Tên sự kiện" Width="250" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Địa điểm" Width="200" Binding="{Binding Location}"/>
+                            <DataGridTextColumn Header="Ngày tổ chức" Width="120" Binding="{Binding EventDate}"/>
+                            <DataGridTextColumn Header="Số lượng đăng ký" Width="130" Binding="{Binding RegisteredCount}"/>
+                            <DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
+                            <DataGridTemplateColumn Header="Thao tác" Width="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Sửa" Background="#FF9800" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Xóa" Background="#F44336" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Xem DS" Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Blood Stock Tab -->
+            <TabItem Header="🏥 Kho máu">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Tình trạng kho máu hiện tại" FontSize="20" 
+                              FontWeight="Bold" Foreground="#1976D2" Margin="0,0,0,20"/>
+
+                    <!-- Blood Type Summary Cards -->
+                    <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,30">
+                        <Border Background="#FFEBEE" CornerRadius="10" Padding="15" Margin="5">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="O+" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#D32F2F"/>
+                                <TextBlock Text="125 đơn vị" FontSize="16" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock Text="Đủ" FontSize="12" HorizontalAlignment="Center" Foreground="#4CAF50"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#E8F5E8" CornerRadius="10" Padding="15" Margin="5">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="A+" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#4CAF50"/>
+                                <TextBlock Text="98 đơn vị" FontSize="16" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock Text="Đủ" FontSize="12" HorizontalAlignment="Center" Foreground="#4CAF50"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#FFF3E0" CornerRadius="10" Padding="15" Margin="5">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="B+" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF9800"/>
+                                <TextBlock Text="45 đơn vị" FontSize="16" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock Text="Thấp" FontSize="12" HorizontalAlignment="Center" Foreground="#FF9800"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#FFEBEE" CornerRadius="10" Padding="15" Margin="5">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="AB-" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#F44336"/>
+                                <TextBlock Text="12 đơn vị" FontSize="16" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock Text="Rất thấp" FontSize="12" HorizontalAlignment="Center" Foreground="#F44336"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+
+                    <!-- Detailed Blood Stock Table -->
+                    <DataGrid Name="BloodStockDataGrid" Grid.Row="2" AutoGenerateColumns="False" 
+                             CanUserAddRows="False" GridLinesVisibility="Horizontal" Background="White">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="60" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Nhóm máu" Width="100" Binding="{Binding BloodType}"/>
+                            <DataGridTextColumn Header="Số lượng (đơn vị)" Width="150" Binding="{Binding Volume}"/>
+                            <DataGridTextColumn Header="Ngày hết hạn" Width="150" Binding="{Binding ExpiredDate}"/>
+                            <DataGridTextColumn Header="Trạng thái" Width="120" Binding="{Binding Status}"/>
+                            <DataGridTemplateColumn Header="Cảnh báo" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#FFF3E0" CornerRadius="15" Padding="8,4">
+                                            <TextBlock Text="Sắp hết hạn" FontSize="11" 
+                                                      Foreground="#E65100" HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Profile Management Tab -->
+            <TabItem Header="👤 Quản lý hồ sơ">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#F3E5F5" CornerRadius="5" Padding="15" Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Quản lý hồ sơ người dùng" FontSize="18" 
+                                      FontWeight="Bold" Foreground="#7B1FA2" VerticalAlignment="Center"/>
+                            <Button Grid.Column="1" Name="AddProfileButton" Content="+ Thêm hồ sơ mới" 
+                                   Background="#9C27B0" Foreground="White" BorderThickness="0" 
+                                   Padding="15,10" Cursor="Hand"/>
+                        </Grid>
+                    </Border>
+
+                    <DataGrid Name="ProfileDataGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                             CanUserAddRows="False" GridLinesVisibility="Horizontal">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Email" Width="200" Binding="{Binding Email}"/>
+                            <DataGridTextColumn Header="Số điện thoại" Width="120" Binding="{Binding Phone}"/>
+                            <DataGridTextColumn Header="Nhóm máu" Width="100" Binding="{Binding BloodType}"/>
+                            <DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
+                            <DataGridTemplateColumn Header="Thao tác" Width="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Sửa" Background="#FF9800" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Xóa" Background="#F44336" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button Content="Chi tiết" Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

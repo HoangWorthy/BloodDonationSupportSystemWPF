@@ -5,8 +5,324 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blood_Donation_Support_System_WPF"
         mc:Ignorable="d"
-        Title="MemberWindow" Height="450" Width="800">
+        Title="Blood Donation System - Member Portal" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#D32F2F">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+                    <TextBlock Text="🩸" FontSize="24" Margin="0,0,10,0"/>
+                    <TextBlock Text="Blood Donation Portal - Member" 
+                              FontSize="20" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" 
+                           VerticalAlignment="Center" Margin="0,0,20,0">
+                    <TextBlock Name="WelcomeText" Text="Chào mừng, Member!" 
+                              Foreground="White" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                    <Button Name="LogoutButton" Content="Đăng xuất" Background="#B71C1C" 
+                           Foreground="White" BorderThickness="0" Padding="15,8" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" Background="White">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="20,12"/>
+                </Style>
+            </TabControl.Resources>
+
+            <!-- Homepage Tab -->
+            <TabItem Header="🏠 Trang chủ">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Welcome Section -->
+                        <Border Grid.Row="0" Background="#FFEBEE" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+                            <StackPanel>
+                                <TextBlock Text="Chào mừng đến với hệ thống hiến máu!" 
+                                          FontSize="24" FontWeight="Bold" Foreground="#D32F2F" Margin="0,0,0,10"/>
+                                <TextBlock Text="Cảm ơn bạn đã tham gia vào sứ mệnh cứu người bằng việc hiến máu. Mỗi giọt máu của bạn đều có thể cứu sống một sinh mệnh." 
+                                          FontSize="16" TextWrapping="Wrap" Foreground="#424242"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Quick Stats -->
+                        <UniformGrid Grid.Row="1" Columns="3" Margin="0,0,0,30">
+                            <Border Background="#E8F5E8" CornerRadius="10" Padding="20" Margin="0,0,10,0">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="🎯" FontSize="30" HorizontalAlignment="Center"/>
+                                    <TextBlock Name="EventCountText" Text="5" FontSize="24" FontWeight="Bold" 
+                                              HorizontalAlignment="Center" Foreground="#4CAF50"/>
+                                    <TextBlock Text="Sự kiện sắp tới" FontSize="14" HorizontalAlignment="Center" 
+                                              Foreground="#666"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#FFF3E0" CornerRadius="10" Padding="20" Margin="5,0">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="🚨" FontSize="30" HorizontalAlignment="Center"/>
+                                    <TextBlock Name="UrgentRequestText" Text="3" FontSize="24" FontWeight="Bold" 
+                                              HorizontalAlignment="Center" Foreground="#FF9800"/>
+                                    <TextBlock Text="Yêu cầu khẩn cấp" FontSize="14" HorizontalAlignment="Center" 
+                                              Foreground="#666"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#E3F2FD" CornerRadius="10" Padding="20" Margin="10,0,0,0">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="📰" FontSize="30" HorizontalAlignment="Center"/>
+                                    <TextBlock Name="NewBlogText" Text="8" FontSize="24" FontWeight="Bold" 
+                                              HorizontalAlignment="Center" Foreground="#2196F3"/>
+                                    <TextBlock Text="Bài viết mới" FontSize="14" HorizontalAlignment="Center" 
+                                              Foreground="#666"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <!-- Recent Activities -->
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Recent Events -->
+                            <Border Grid.Column="0" Background="White" BorderBrush="#E0E0E0" 
+                                   BorderThickness="1" CornerRadius="10" Padding="20" Margin="0,0,15,0">
+                                <StackPanel>
+                                    <TextBlock Text="Sự kiện hiến máu gần đây" FontSize="18" FontWeight="Bold" 
+                                              Foreground="#D32F2F" Margin="0,0,0,15"/>
+                                    <ListView Name="RecentEventsListView" Height="200" BorderThickness="0">
+                                        <ListViewItem>
+                                            <StackPanel>
+                                                <TextBlock Text="Hiến máu tại Bệnh viện Chợ Rẫy" FontWeight="SemiBold"/>
+                                                <TextBlock Text="25/07/2025 - TP.HCM" Foreground="#666" FontSize="12"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem>
+                                            <StackPanel>
+                                                <TextBlock Text="Chương trình hiến máu cộng đồng" FontWeight="SemiBold"/>
+                                                <TextBlock Text="28/07/2025 - Hà Nội" Foreground="#666" FontSize="12"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                    </ListView>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Urgent Requests -->
+                            <Border Grid.Column="1" Background="White" BorderBrush="#E0E0E0" 
+                                   BorderThickness="1" CornerRadius="10" Padding="20" Margin="15,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Yêu cầu máu khẩn cấp" FontSize="18" FontWeight="Bold" 
+                                              Foreground="#FF5722" Margin="0,0,0,15"/>
+                                    <ListView Name="UrgentRequestsListView" Height="200" BorderThickness="0">
+                                        <ListViewItem>
+                                            <StackPanel>
+                                                <TextBlock Text="Cần nhóm máu O- (KHẨN CẤP)" FontWeight="SemiBold" Foreground="#D32F2F"/>
+                                                <TextBlock Text="Bệnh viện 108 - Hà Nội" Foreground="#666" FontSize="12"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem>
+                                            <StackPanel>
+                                                <TextBlock Text="Cần nhóm máu AB+ (KHẨN CẤP)" FontWeight="SemiBold" Foreground="#D32F2F"/>
+                                                <TextBlock Text="Bệnh viện Đại học Y Dược" Foreground="#666" FontSize="12"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                    </ListView>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Event Registration Tab -->
+            <TabItem Header="📅 Đăng ký hiến máu">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Search and Filter -->
+                    <Border Grid.Row="0" Background="#F5F5F5" CornerRadius="5" Padding="15" Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Name="EventSearchTextBox" Grid.Column="0" Height="35" 
+                                    VerticalContentAlignment="Center" Padding="10,0"
+                                    Text="Tìm kiếm sự kiện..." Foreground="#999"
+                                    BorderBrush="#DDD" Margin="0,0,10,0"/>
+
+                            <ComboBox Name="CityFilterComboBox" Grid.Column="1" Height="35" 
+                                     Margin="0,0,10,0" VerticalContentAlignment="Center">
+                                <ComboBoxItem Content="Tất cả thành phố" IsSelected="True"/>
+                                <ComboBoxItem Content="Hà Nội"/>
+                                <ComboBoxItem Content="TP. Hồ Chí Minh"/>
+                                <ComboBoxItem Content="Đà Nẵng"/>
+                            </ComboBox>
+
+                            <Button Name="SearchButton" Grid.Column="2" Content="Tìm kiếm" 
+                                   Height="35" Padding="20,0" Background="#D32F2F" 
+                                   Foreground="White" BorderThickness="0"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Events List -->
+                    <ListView Name="EventsListView" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" 
+                                       CornerRadius="10" Margin="0,5" Padding="20">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="Hiến máu tại Bệnh viện Chợ Rẫy" 
+                                                      FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>
+                                            <TextBlock Text="📍 123 Nguyễn Huệ, Q.1, TP.HCM" 
+                                                      Foreground="#666" Margin="0,0,0,5"/>
+                                            <TextBlock Text="📅 25/07/2025 - 08:00 đến 17:00" 
+                                                      Foreground="#666" Margin="0,0,0,5"/>
+                                            <TextBlock Text="👥 Đã đăng ký: 45/100 người" 
+                                                      Foreground="#4CAF50" FontWeight="SemiBold"/>
+                                        </StackPanel>
+
+                                        <Button Grid.Column="1" Content="Đăng ký" 
+                                               Background="#4CAF50" Foreground="White" 
+                                               BorderThickness="0" Padding="20,10" 
+                                               VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+            <!-- Blog Tab -->
+            <TabItem Header="📰 Blog">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Tin tức và bài viết về hiến máu" 
+                              FontSize="20" FontWeight="Bold" Foreground="#D32F2F" Margin="0,0,0,20"/>
+
+                    <ListView Name="BlogListView" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" 
+                                       CornerRadius="10" Margin="0,10" Padding="20">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Grid.Column="0" Background="#F0F0F0" CornerRadius="5" 
+                                               Height="80" Width="100" Margin="0,0,15,0">
+                                            <TextBlock Text="📷" FontSize="30" HorizontalAlignment="Center" 
+                                                      VerticalAlignment="Center" Foreground="#999"/>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="Lợi ích của việc hiến máu thường xuyên" 
+                                                      FontSize="16" FontWeight="Bold" Margin="0,0,0,8"/>
+                                            <TextBlock Text="Hiến máu không chỉ giúp cứu sống người khác mà còn mang lại nhiều lợi ích cho sức khỏe của bạn..." 
+                                                      TextWrapping="Wrap" Foreground="#666" Margin="0,0,0,8"/>
+                                            <TextBlock Text="📅 Ngày đăng: 24/07/2025 | ✍️ Tác giả: BS. Nguyễn Văn A" 
+                                                      FontSize="12" Foreground="#999"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+            <!-- Blood Request Tab -->
+            <TabItem Header="🩸 Yêu cầu máu khẩn cấp">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#FFEBEE" CornerRadius="5" Padding="15" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="⚠️ YÊU CẦU MÁU KHẨN CẤP" FontSize="18" FontWeight="Bold" 
+                                      Foreground="#D32F2F" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Dưới đây là danh sách các yêu cầu máu có mức độ ưu tiên cao cần được hỗ trợ ngay lập tức." 
+                                      HorizontalAlignment="Center" Foreground="#666" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <ListView Name="UrgentBloodRequestListView" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#FFF" BorderBrush="#FFCDD2" BorderThickness="2" 
+                                       CornerRadius="10" Margin="0,10" Padding="20">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="🚨 KHẨN CẤP - Cần nhóm máu O-" 
+                                                      FontSize="16" FontWeight="Bold" Foreground="#D32F2F" Margin="0,0,0,10"/>
+                                            <TextBlock Text="🏥 Bệnh viện: Bệnh viện Chợ Rẫy" Margin="0,0,0,5"/>
+                                            <TextBlock Text="📍 Địa chỉ: 201B Nguyễn Chí Thanh, Q.5, TP.HCM" Margin="0,0,0,5"/>
+                                            <TextBlock Text="🩸 Số lượng cần: 3 đơn vị" Margin="0,0,0,5"/>
+                                            <TextBlock Text="⏰ Thời gian: Cần ngay lập tức" Foreground="#FF5722" FontWeight="SemiBold"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <Border Background="#D32F2F" CornerRadius="20" Padding="15,8" Margin="0,0,0,10">
+                                                <TextBlock Text="KHẨN CẤP" Foreground="White" FontWeight="Bold" FontSize="12"/>
+                                            </Border>
+                                            <Button Content="Liên hệ hỗ trợ" Background="#4CAF50" 
+                                                   Foreground="White" BorderThickness="0" Padding="15,8"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

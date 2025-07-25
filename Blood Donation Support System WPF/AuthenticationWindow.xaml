@@ -5,8 +5,191 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blood_Donation_Support_System_WPF"
         mc:Ignorable="d"
-        Title="AuthenticationWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Blood Donation Support System - Authentication" Height="500" Width="600"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#F5F5F5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#D32F2F" CornerRadius="0,0,10,10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Blood Donation Support System" 
+                          FontSize="24" FontWeight="Bold" 
+                          Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" Margin="20" Background="Transparent" BorderThickness="0">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" Background="#E0E0E0" BorderBrush="#CCCCCC" 
+                                       BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Padding="15,10">
+                                    <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="White"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+
+            <!-- Login Tab -->
+            <TabItem Header="Đăng Nhập">
+                <Border Background="White" CornerRadius="0,5,5,5" Padding="30">
+                    <StackPanel VerticalAlignment="Center" MaxWidth="350">
+                        <TextBlock Text="ĐĂNG NHẬP" FontSize="20" FontWeight="Bold" 
+                                  HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="#D32F2F"/>
+
+                        <TextBlock Text="Email:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <TextBox Name="LoginEmailTextBox" Height="35" Padding="10,8" 
+                                FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                        <TextBlock Text="Mật khẩu:" FontWeight="SemiBold" Margin="0,15,0,5"/>
+                        <PasswordBox Name="LoginPasswordBox" Height="35" Padding="10,8" 
+                                    FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                        <Button Name="LoginButton" Content="Đăng Nhập" Height="40" Margin="0,25,0,0"
+                               Background="#D32F2F" Foreground="White" FontSize="16" FontWeight="Bold"
+                               BorderThickness="0" Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}" 
+                                                       CornerRadius="5" Padding="10">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#B71C1C"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </TabItem>
+
+            <!-- Register Tab -->
+            <TabItem Header="Đăng Ký">
+                <Border Background="White" CornerRadius="5,0,5,5" Padding="30">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel MaxWidth="400">
+                            <TextBlock Text="ĐĂNG KÝ TÀI KHOẢN" FontSize="20" FontWeight="Bold" 
+                                      HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="#D32F2F"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Left Column -->
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Email:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                    <TextBox Name="RegisterEmailTextBox" Height="35" Padding="8" 
+                                            FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                                    <TextBlock Text="Mật khẩu:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                    <PasswordBox Name="RegisterPasswordBox" Height="35" Padding="8" 
+                                                FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                                    <TextBlock Text="Họ và tên:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                    <TextBox Name="FullNameTextBox" Height="35" Padding="8" 
+                                            FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                                    <TextBlock Text="CCCD/CMND:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                    <TextBox Name="PersonalIdTextBox" Height="35" Padding="8" 
+                                            FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                                    <TextBlock Text="Số điện thoại:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                    <TextBox Name="PhoneTextBox" Height="35" Padding="8" 
+                                            FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+                                </StackPanel>
+
+                                <!-- Right Column -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="Ngày sinh:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                    <DatePicker Name="BirthDatePicker" Height="35" FontSize="14" 
+                                               BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                                    <TextBlock Text="Giới tính:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                    <ComboBox Name="GenderComboBox" Height="35" FontSize="14" 
+                                             BorderBrush="#CCCCCC" BorderThickness="1">
+                                        <ComboBoxItem Content="Nam"/>
+                                        <ComboBoxItem Content="Nữ"/>
+                                    </ComboBox>
+
+                                    <TextBlock Text="Nhóm máu:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                    <ComboBox Name="BloodTypeComboBox" Height="35" FontSize="14" 
+                                             BorderBrush="#CCCCCC" BorderThickness="1">
+                                        <ComboBoxItem Content="A+"/>
+                                        <ComboBoxItem Content="A-"/>
+                                        <ComboBoxItem Content="B+"/>
+                                        <ComboBoxItem Content="B-"/>
+                                        <ComboBoxItem Content="AB+"/>
+                                        <ComboBoxItem Content="AB-"/>
+                                        <ComboBoxItem Content="O+"/>
+                                        <ComboBoxItem Content="O-"/>
+                                    </ComboBox>
+
+                                    <TextBlock Text="Vai trò:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                                    <ComboBox Name="RoleComboBox" Height="35" FontSize="14" 
+                                             BorderBrush="#CCCCCC" BorderThickness="1">
+                                        <ComboBoxItem Content="MEMBER" IsSelected="True"/>
+                                        <ComboBoxItem Content="STAFF"/>
+                                        <ComboBoxItem Content="ADMIN"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+
+                            <TextBlock Text="Địa chỉ:" FontWeight="SemiBold" Margin="0,15,0,5"/>
+                            <TextBox Name="AddressTextBox" Height="35" Padding="8" 
+                                    FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1"/>
+
+                            <Button Name="RegisterButton" Content="Đăng Ký" Height="40" Margin="0,20,0,0"
+                                   Background="#4CAF50" Foreground="White" FontSize="16" FontWeight="Bold"
+                                   BorderThickness="0" Cursor="Hand">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" 
+                                                           CornerRadius="5" Padding="10">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#388E3C"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

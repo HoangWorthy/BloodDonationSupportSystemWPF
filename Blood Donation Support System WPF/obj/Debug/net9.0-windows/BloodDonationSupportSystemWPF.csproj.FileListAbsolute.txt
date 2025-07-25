@@ -74,3 +74,4 @@ D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net
 D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodDonationSupportSystemWPF.pdb
 D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodDonationSupportSystemWPF.genruntimeconfig.cache
 D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\ref\BloodDonationSupportSystemWPF.dll
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodDonationSupportSystemWPF.sourcelink.json
