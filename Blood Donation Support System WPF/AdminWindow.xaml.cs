@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,16 @@ namespace Blood_Donation_Support_System_WPF
     /// </summary>
     public partial class AdminWindow : Window
     {
+        private readonly BloodRequestService _bloodRequestService;
         public AdminWindow()
         {
-            InitializeComponent();
+            _bloodRequestService = new BloodRequestService();
+            LoadBloodRequest();
+        }
+        private async void LoadBloodRequest()
+        {
+            var requests = await _bloodRequestService.GetAllAsync();
+            AdminBloodRequestDataGrid.ItemsSource = requests;
         }
     }
 }
