@@ -3,6 +3,28 @@
   "WorkspaceRootPath": "D:\\Blood Donation Support System\\",
   "Documents": [
     {
+<<<<<<< HEAD
+      "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\adminwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\adminwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\staffwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\staffwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\adminwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\adminwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+=======
       "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\staffwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\staffwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,6 +45,7 @@
       "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+>>>>>>> f18b6d2 (Added missing files)
       "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\adddonationeventwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\adddonationeventwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -86,7 +109,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+<<<<<<< HEAD
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -101,13 +125,28 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+=======
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+>>>>>>> f18b6d2 (Added missing files)
               "Title": "AdminWindow.xaml.cs",
               "DocumentMoniker": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\AdminWindow.xaml.cs",
               "RelativeDocumentMoniker": "Blood Donation Support System WPF\\AdminWindow.xaml.cs",
               "ToolTip": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\AdminWindow.xaml.cs",
               "RelativeToolTip": "Blood Donation Support System WPF\\AdminWindow.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABEAAAAcAAAAAAAAAA==",
+<<<<<<< HEAD
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAANAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAuAAAAAAAAAA==",
+>>>>>>> f18b6d2 (Added missing files)
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-25T08:07:26.746Z",
               "EditorCaption": ""
@@ -173,19 +212,41 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 1,
+=======
               "DocumentIndex": 0,
+>>>>>>> f18b6d2 (Added missing files)
               "Title": "StaffWindow.xaml.cs",
               "DocumentMoniker": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\StaffWindow.xaml.cs",
               "RelativeDocumentMoniker": "Blood Donation Support System WPF\\StaffWindow.xaml.cs",
               "ToolTip": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\StaffWindow.xaml.cs",
               "RelativeToolTip": "Blood Donation Support System WPF\\StaffWindow.xaml.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAwwDMAAAANAAAAAAAAAA==",
+<<<<<<< HEAD
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAGEAAAAtAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+>>>>>>> f18b6d2 (Added missing files)
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-26T12:49:28.427Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
+=======
+              "DocumentIndex": 7,
+              "Title": "StaffWindow.xaml",
+              "DocumentMoniker": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\StaffWindow.xaml",
+              "RelativeDocumentMoniker": "Blood Donation Support System WPF\\StaffWindow.xaml",
+              "ToolTip": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\StaffWindow.xaml",
+              "RelativeToolTip": "Blood Donation Support System WPF\\StaffWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-25T08:06:57.428Z"
+            },
+            {
+              "$type": "Document",
+>>>>>>> f18b6d2 (Added missing files)
               "DocumentIndex": 4,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\AssemblyInfo.cs",

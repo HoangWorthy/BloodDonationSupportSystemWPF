@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BloodDonationSupportSystemWPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8265d2d3331d2b04cda78c46e92ceff539b19bd9")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1251964c2e821d1998839c574d0ddc63631eae5")]
+>>>>>>> f18b6d2 (Added missing files)
 [assembly: System.Reflection.AssemblyProductAttribute("BloodDonationSupportSystemWPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BloodDonationSupportSystemWPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
