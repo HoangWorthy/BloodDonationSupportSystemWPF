@@ -168,9 +168,9 @@
 
                             <TextBlock Grid.Column="0" Text="Quản lý sự kiện hiến máu" FontSize="18" 
                                       FontWeight="Bold" Foreground="#4CAF50" VerticalAlignment="Center"/>
-                            <Button Grid.Column="1" Name="AddEventButton" Content="+ Tạo sự kiện mới" 
-                                   Background="#4CAF50" Foreground="White" BorderThickness="0" 
-                                   Padding="15,10" Cursor="Hand"/>
+                            <Button Name="AddEventButton" Content="+ Tạo sự kiện mới" 
+                                   Background="#4CAF50" Foreground="White" BorderThickness="0" Click="AddEventButton_Click" 
+                                   Padding="15,10" Cursor="Hand" Grid.ColumnSpan="2" Height="39" Margin="979,0,0,0" VerticalAlignment="Bottom"/>
                         </Grid>
                     </Border>
 
@@ -180,19 +180,17 @@
                             <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
                             <DataGridTextColumn Header="Tên sự kiện" Width="250" Binding="{Binding Name}"/>
                             <DataGridTextColumn Header="Địa điểm" Width="200" Binding="{Binding Location}"/>
-                            <DataGridTextColumn Header="Ngày tổ chức" Width="120" Binding="{Binding EventDate}"/>
-                            <DataGridTextColumn Header="Số lượng đăng ký" Width="130" Binding="{Binding RegisteredCount}"/>
+                            <DataGridTextColumn Header="Ngày tổ chức" Width="120" Binding="{Binding DonationDate}"/>
+                            <DataGridTextColumn Header="Số lượng đăng ký" Width="130" Binding="{Binding RegisteredMemberCount}"/>
                             <DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
                             <DataGridTemplateColumn Header="Thao tác" Width="200">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                             <Button Content="Sửa" Background="#FF9800" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Name="btnUpdateEvent" Click="btnUpdateEvent_Click"/>
                                             <Button Content="Xóa" Background="#F44336" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
-                                            <Button Content="Xem DS" Background="#2196F3" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Name="btnDeleteEvent" Click="btnDeleteEvent_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

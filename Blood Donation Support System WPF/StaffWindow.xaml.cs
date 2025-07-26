@@ -1,4 +1,7 @@
-﻿using BLL.Services.Implementations;
+﻿using BLL.Services;
+using BLL.Services.Implementations;
+using DAL.Entities;
+using BLL.Services.Implementations;
 using DAL.Entities;
 using Services;
 using System;
@@ -22,17 +25,76 @@ namespace Blood_Donation_Support_System_WPF
     /// </summary>
     public partial class StaffWindow : Window
     {
+        private readonly IDonationEventService donationEventService;
         private readonly BloodRequestService _bloodRequestService;
         private readonly BloodStockService _bloodStockService;
 
         public StaffWindow()
         {
             InitializeComponent();
+            donationEventService = new DonationEventService();
+            LoadDonationEvent();
             _bloodRequestService = new BloodRequestService();
             _bloodStockService = new BloodStockService();
-
             LoadBloodRequest();
         }
+        private void LoadDonationEvent()
+        {
+            EventDataGrid.ItemsSource = donationEventService.GetDonationEvents();
+        }
+        private void AddEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            var modal = new AddDonationEventWindow();
+            modal.Owner = this;
+            modal.InitializeDefaults();
+
+            if (modal.ShowDialog() == true)
+            {
+                DonationEvent newEvent = modal.NewEvent;
+                donationEventService.AddDonationEvent(newEvent);
+                LoadDonationEvent();
+            }
+        }
+
+        private void btnUpdateEvent_Click(object sender, RoutedEventArgs e)
+        {
+            var modal = new AddDonationEventWindow();
+            DonationEvent donationEvent = (DonationEvent)EventDataGrid.SelectedItem;
+            modal.NewEvent = donationEvent;
+            modal.isUpdate = true;
+            modal.InitializeDefaults();
+            modal.Owner = this;
+
+            if (modal.ShowDialog() == true)
+            {
+                DonationEvent donation = modal.NewEvent;
+                donationEvent.Name = donation.Name;
+                donationEvent.Address = donation.Address;
+                donationEvent.Ward = donation.Ward;
+                donationEvent.District = donation.District;
+                donationEvent.City = donation.City;
+                donationEvent.DonationDate = donation.DonationDate;
+                donationEvent.RegisteredMemberCount = donation.RegisteredMemberCount;
+                donationEvent.Status = donation.Status;
+                donationEvent.DonationType = donation.DonationType;
+                donationEvent.DonationTimeSlots = donation.DonationTimeSlots;
+                donationEventService.UpdateDonationEvent(donationEvent);
+                LoadDonationEvent();
+            }
+        }
+
+        private void btnDeleteEvent_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure to remove this?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(result == MessageBoxResult.Yes)
+            {
+                DonationEvent donationEvent = (DonationEvent)EventDataGrid.SelectedItem;
+                donationEventService.RemoveDonationEvent(donationEvent);
+                MessageBox.Show("Delete successfully!", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+                LoadDonationEvent();
+            }
+        }
+            
         private async void LoadBloodRequest()
         {
             var requests = await _bloodRequestService.GetAllAsync();

@@ -12,3 +12,4 @@ D:\Blood Donation Support System\DAL\obj\Debug\net9.0\refint\DAL.dll
 D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.pdb
 D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.genruntimeconfig.cache
 D:\Blood Donation Support System\DAL\obj\Debug\net9.0\ref\DAL.dll
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.sourcelink.json

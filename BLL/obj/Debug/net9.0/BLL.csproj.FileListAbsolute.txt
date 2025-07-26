@@ -13,3 +13,4 @@ D:\Blood Donation Support System\BLL\obj\Debug\net9.0\BLL.dll
 D:\Blood Donation Support System\BLL\obj\Debug\net9.0\refint\BLL.dll
 D:\Blood Donation Support System\BLL\obj\Debug\net9.0\BLL.pdb
 D:\Blood Donation Support System\BLL\obj\Debug\net9.0\ref\BLL.dll
+D:\Blood Donation Support System\BLL\obj\Debug\net9.0\BLL.sourcelink.json
