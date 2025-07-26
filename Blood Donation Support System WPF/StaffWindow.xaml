@@ -119,7 +119,7 @@
                                       FontWeight="Bold" Foreground="#D32F2F" VerticalAlignment="Center"/>
                             <Button Grid.Column="1" Name="AddBloodRequestButton" Content="+ Thêm yêu cầu mới" 
                                    Background="#F44336" Foreground="White" BorderThickness="0" 
-                                   Padding="15,10" Cursor="Hand"/>
+                                   Padding="15,10" Cursor="Hand" Click="AddBloodRequestButton_Click_1"/>
                         </Grid>
                     </Border>
 
@@ -136,12 +136,12 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Content="Sửa" Background="#FF9800" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
-                                            <Button Content="Xóa" Background="#F44336" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
-                                            <Button Content="Chi tiết" Background="#2196F3" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button x:Name="UpdateBloodRequest" Content="Sửa" Background="#FF9800" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Click="UpdateBloodRequest_Click"/>
+                                            <Button x:Name="DeleteBloodRequest" Content="Xóa" Background="#F44336" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Click="DeleteBloodRequest_Click"/>
+                                            <Button x:Name="DetailBloodRequest" Content="Chi tiết" Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Click="DetailBloodRequest_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

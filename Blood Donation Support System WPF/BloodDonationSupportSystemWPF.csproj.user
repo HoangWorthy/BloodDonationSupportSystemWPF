@@ -8,6 +8,9 @@
     <Compile Update="AuthenticationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="BloodRequestDetailWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MemberWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
