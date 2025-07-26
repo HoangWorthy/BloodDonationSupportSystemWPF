@@ -42,12 +42,23 @@ namespace Blood_Donation_Support_System_WPF
 
         private async void AddBloodRequestButton_Click(object sender, RoutedEventArgs e)
         {
-            string bloodType = BloodTypeTextBox.Text.Trim();
-            string status = StatusTextBox.Text.Trim();
+            // Get selected blood type from ComboBox
+            var selectedBloodTypeItem = BloodTypeComboBox.SelectedItem as ComboBoxItem;
+            string bloodType = selectedBloodTypeItem?.Content.ToString();
+
+            // Get selected status from ComboBox
+            var selectedStatusItem = StatusComboBox.SelectedItem as ComboBoxItem;
+            string status = selectedStatusItem?.Content.ToString();
 
             if (string.IsNullOrEmpty(bloodType))
             {
-                MessageBox.Show("Please enter a blood type.");
+                MessageBox.Show("Please select a blood type.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(status))
+            {
+                MessageBox.Show("Please select a status.");
                 return;
             }
 
@@ -64,10 +75,11 @@ namespace Blood_Donation_Support_System_WPF
             await _bloodRequestService.AddAsync(newRequest);
 
             MessageBox.Show("Blood request added successfully!");
-            this.DialogResult = true; // triggers `ShowDialog()` return
+            this.DialogResult = true;
             this.Close();
-
         }
+
+
 
 
 

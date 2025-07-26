@@ -359,6 +359,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
+                            <!--
                             <TextBlock Grid.Column="0" Text="Lọc theo mức độ:" FontWeight="SemiBold" 
                                       VerticalAlignment="Center" Margin="0,0,10,0"/>
                             <ComboBox Name="UrgencyFilterComboBox" Grid.Column="1" Height="35">
@@ -367,6 +368,7 @@
                                 <ComboBoxItem Content="MEDIUM - Trung bình"/>
                                 <ComboBoxItem Content="LOW - Thấp"/>
                             </ComboBox>
+                            -->
                         </Grid>
                     </Border>
 
@@ -393,10 +395,9 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Content="Xem" Background="#2196F3" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
-                                            <Button Content="Duyệt" Background="#4CAF50" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button x:Name="BloodRequestDetailButton" Content="Xem" Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Click="BloodRequestDetailButton_Click"/>
+                                          
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

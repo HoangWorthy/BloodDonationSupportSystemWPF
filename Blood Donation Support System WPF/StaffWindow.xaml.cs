@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BLL.Services.Implementations;
+using DAL.Entities;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -22,19 +23,52 @@ namespace Blood_Donation_Support_System_WPF
     public partial class StaffWindow : Window
     {
         private readonly BloodRequestService _bloodRequestService;
+        private readonly BloodStockService _bloodStockService;
+
         public StaffWindow()
         {
             InitializeComponent();
             _bloodRequestService = new BloodRequestService();
+            _bloodStockService = new BloodStockService();
+
             LoadBloodRequest();
         }
         private async void LoadBloodRequest()
         {
             var requests = await _bloodRequestService.GetAllAsync();
-            BloodRequestDataGrid.ItemsSource = requests;
+
+            foreach (var request in requests)
+            {
+                await ProcessBloodRequestIfStockAvailableAsync(request);
+            }
+
+            // Load lại dữ liệu sau khi cập nhật
+            BloodRequestDataGrid.ItemsSource = await _bloodRequestService.GetAllAsync();
         }
 
+        private async Task ProcessBloodRequestIfStockAvailableAsync(BloodRequest request)
+        {
+            if (request.Status != "Pending" && request.Status != "Processing")
+                return;
 
+            var allStocks = await _bloodStockService.GetAllAsync();
+            var matchingStock = allStocks.FirstOrDefault(stock =>
+                stock.BloodType.Trim().Equals(request.BloodType.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                stock.Volume > 0);
+          
+            if (matchingStock != null)
+            {
+                // Reduce stock and mark request as fulfilled
+                matchingStock.Volume -= 1;
+                await _bloodStockService.UpdateAsync(matchingStock);
+
+                request.Status = "Fulfilled";
+                await _bloodRequestService.UpdateAsync(request);
+
+                MessageBox.Show($"Yêu cầu đã được xử lý với nhóm máu {request.BloodType}. Trạng thái chuyển thành 'Fulfilled'.");
+            }
+           
+        }
 
         private void AddBloodRequestButton_Click_1(object sender, RoutedEventArgs e)
         {
@@ -86,8 +120,10 @@ namespace Blood_Donation_Support_System_WPF
         {
             if (sender is Button button && button.DataContext is BloodRequest request)
             {
-                MessageBox.Show($"Chi tiết yêu cầu: {request.Id}\nNhóm máu: {request.BloodType}");
+                var detailWindow = new BloodRequestDetailWindow(request);
+                detailWindow.ShowDialog();
             }
         }
+
     }
 }

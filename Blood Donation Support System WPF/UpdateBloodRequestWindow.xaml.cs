@@ -1,4 +1,6 @@
-﻿using DAL.Entities;
+﻿
+using BLL.Services.Implementations;
+using DAL.Entities;
 using Service;
 using Services;
 using System;
@@ -24,7 +26,8 @@ namespace Blood_Donation_Support_System_WPF
     {
         private readonly BloodRequestService _bloodRequestService;
         private readonly ComponentRequestService _componentRequestService;
-        private BloodRequest _bloodRequest;
+        private readonly BloodStockService _bloodStockService;
+        private readonly BloodRequest _bloodRequest;
 
         public UpdateBloodRequestWindow(BloodRequest bloodRequest)
         {
@@ -32,7 +35,7 @@ namespace Blood_Donation_Support_System_WPF
 
             _bloodRequestService = new BloodRequestService();
             _componentRequestService = new ComponentRequestService();
-
+            _bloodStockService = new BloodStockService();
             _bloodRequest = bloodRequest;
 
             LoadComponents();
@@ -53,14 +56,37 @@ namespace Blood_Donation_Support_System_WPF
 
         private void LoadBloodRequestData()
         {
-            BloodTypeTextBox.Text = _bloodRequest.BloodType;
-            StatusTextBox.Text = _bloodRequest.Status;
+            // Set the selected blood type
+            foreach (ComboBoxItem item in BloodTypeComboBox.Items)
+            {
+                if (item.Content.ToString() == _bloodRequest.BloodType)
+                {
+                    BloodTypeComboBox.SelectedItem = item;
+                    break;
+                }
+            }
+
+            // Set the selected status
+            foreach (ComboBoxItem item in StatusComboBox.Items)
+            {
+                if (item.Content.ToString() == _bloodRequest.Status)
+                {
+                    StatusComboBox.SelectedItem = item;
+                    break;
+                }
+            }
         }
+       
+
+
 
         private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            _bloodRequest.BloodType = BloodTypeTextBox.Text.Trim();
-            _bloodRequest.Status = StatusTextBox.Text.Trim();
+            var selectedBloodTypeItem = BloodTypeComboBox.SelectedItem as ComboBoxItem;
+            _bloodRequest.BloodType = selectedBloodTypeItem?.Content.ToString();
+
+            var selectedStatusItem = StatusComboBox.SelectedItem as ComboBoxItem;
+            _bloodRequest.Status = selectedStatusItem?.Content.ToString();
 
             if (ComponentComboBox.SelectedValue is int selectedComponentId)
                 _bloodRequest.ComponentRequestId = selectedComponentId;
@@ -76,5 +102,7 @@ namespace Blood_Donation_Support_System_WPF
                 MessageBox.Show($"Lỗi khi cập nhật: {ex.Message}");
             }
         }
+
+
     }
 }
