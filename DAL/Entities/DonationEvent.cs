@@ -7,6 +7,8 @@ public partial class DonationEvent
 {
     public long Id { get; set; }
 
+    public string Location => $"{Address}, {Ward}, {District}, {City}";
+
     public string Name { get; set; } = null!;
 
     public string? Hospital { get; set; }
@@ -23,7 +25,7 @@ public partial class DonationEvent
 
     public int RegisteredMemberCount { get; set; }
 
-    public int TotalMemberCount { get; set; }
+    public int TotalMemberCount { get; set; }   
 
     public string Status { get; set; } = null!;
 

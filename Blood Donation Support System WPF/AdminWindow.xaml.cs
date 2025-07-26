@@ -1,4 +1,6 @@
-﻿using BLL.Services.Implementations;
+﻿using BLL.Services;
+using BLL.Services.Implementations;
+using BLL.Services.Implementations;
 using DAL.Entities;
 using Services;
 using System;
@@ -22,13 +24,21 @@ namespace Blood_Donation_Support_System_WPF
     /// </summary>
     public partial class AdminWindow : Window
     {
+        private readonly IDonationEventService donationEventService;
         private readonly BloodRequestService _bloodRequestService;
         private readonly BloodStockService _bloodStockService;
         public AdminWindow()
         {
+            InitializeComponent();
+            donationEventService = new DonationEventService();
+            LoadDonationEvents();
             _bloodStockService = new BloodStockService();
             _bloodRequestService = new BloodRequestService();
             LoadBloodRequest();
+        }
+        public void LoadDonationEvents()
+        {
+            EventDataGrid.ItemsSource = donationEventService.GetDonationEvents();
         }
         private async void LoadBloodRequest()
         {
@@ -66,8 +76,6 @@ namespace Blood_Donation_Support_System_WPF
             }
           
         }
-
-
 
         private void BloodRequestDetailButton_Click(object sender, RoutedEventArgs e)
         {

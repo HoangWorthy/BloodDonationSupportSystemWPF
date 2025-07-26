@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\Blood Donation Support System\Blood Donation Support System WPF\App.xaml
-4-1733050924
+8151417077
 
-9-1049982422
+13-1378363172
 237-1293162183
-AdminWindow.xaml;AuthenticationWindow.xaml;MemberWindow.xaml;StaffWindow.xaml;
+AddBloodRequestWindow.xaml;AddDonationEventWindow.xaml;AdminWindow.xaml;AuthenticationWindow.xaml;BloodRequestDetailWindow.xaml;MemberWindow.xaml;StaffWindow.xaml;UpdateBloodRequestWindow.xaml;
 
 False
 

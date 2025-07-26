@@ -3071,7 +3071,8 @@
   },
   "projectFileDependencyGroups": {
     "net9.0-windows7.0": [
-      "BLL >= 1.0.0"
+      "BLL >= 1.0.0",
+      "DAL >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3108,6 +3109,9 @@
           "projectReferences": {
             "D:\\Blood Donation Support System\\BLL\\BLL.csproj": {
               "projectPath": "D:\\Blood Donation Support System\\BLL\\BLL.csproj"
+            },
+            "D:\\Blood Donation Support System\\DAL\\DAL.csproj": {
+              "projectPath": "D:\\Blood Donation Support System\\DAL\\DAL.csproj"
             }
           }
         }
