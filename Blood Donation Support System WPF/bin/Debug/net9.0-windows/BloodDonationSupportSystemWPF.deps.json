@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v9.0": {
       "BloodDonationSupportSystemWPF/1.0.0": {
         "dependencies": {
-          "BLL": "1.0.0"
+          "BLL": "1.0.0",
+          "DAL": "1.0.0"
         },
         "runtime": {
           "BloodDonationSupportSystemWPF.dll": {}

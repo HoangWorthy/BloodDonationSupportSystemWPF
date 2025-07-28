@@ -75,3 +75,11 @@ D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net
 D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodDonationSupportSystemWPF.genruntimeconfig.cache
 D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\ref\BloodDonationSupportSystemWPF.dll
 D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodDonationSupportSystemWPF.sourcelink.json
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\AddDonationEventWindow.g.cs
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\AddDonationEventWindow.baml
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodRequestDetailWindow.baml
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\AddBloodRequestWindow.g.cs
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodRequestDetailWindow.g.cs
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\UpdateBloodRequestWindow.g.cs
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\AddBloodRequestWindow.baml
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\UpdateBloodRequestWindow.baml

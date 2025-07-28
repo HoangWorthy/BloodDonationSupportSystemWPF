@@ -2,10 +2,16 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="AddDonationEventWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="AuthenticationWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BloodRequestDetailWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MemberWindow.xaml.cs">

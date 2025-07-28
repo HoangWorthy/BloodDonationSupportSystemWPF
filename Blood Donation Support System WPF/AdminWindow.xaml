@@ -359,6 +359,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
+                            <!--
                             <TextBlock Grid.Column="0" Text="Lọc theo mức độ:" FontWeight="SemiBold" 
                                       VerticalAlignment="Center" Margin="0,0,10,0"/>
                             <ComboBox Name="UrgencyFilterComboBox" Grid.Column="1" Height="35">
@@ -367,6 +368,7 @@
                                 <ComboBoxItem Content="MEDIUM - Trung bình"/>
                                 <ComboBoxItem Content="LOW - Thấp"/>
                             </ComboBox>
+                            -->
                         </Grid>
                     </Border>
 
@@ -393,10 +395,9 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Content="Xem" Background="#2196F3" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
-                                            <Button Content="Duyệt" Background="#4CAF50" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                            <Button x:Name="BloodRequestDetailButton" Content="Xem" Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Click="BloodRequestDetailButton_Click"/>
+                                          
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -414,56 +415,29 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Danh sách sự kiện hiến máu" FontSize="18" 
-                              FontWeight="Bold" Foreground="#6A1B9A" Margin="0,0,0,20"/>
+                    <Border Grid.Row="0" Background="#E8F5E8" CornerRadius="5" Padding="15" Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                    <ListView Name="AdminEventListView" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" 
-                                       CornerRadius="10" Margin="0,10" Padding="20">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Các sự kiện hiến máu" FontSize="18" 
+                      FontWeight="Bold" Foreground="#4CAF50" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
 
-                                        <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Hiến máu tại Bệnh viện Chợ Rẫy" 
-                                                      FontSize="16" FontWeight="Bold" Margin="0,0,0,8"/>
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Text="📍" Margin="0,0,5,0"/>
-                                                <TextBlock Text="201B Nguyễn Chí Thanh, Q.5, TP.HCM"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Text="📅" Margin="0,0,5,0"/>
-                                                <TextBlock Text="25/07/2025 - 08:00 đến 17:00"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Text="👥" Margin="0,0,5,0"/>
-                                                <TextBlock Text="Đã đăng ký: 85/120 người"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="👨‍⚕️" Margin="0,0,5,0"/>
-                                                <TextBlock Text="Người tạo: Dr. Nguyễn Văn B (Staff)"/>
-                                            </StackPanel>
-                                        </StackPanel>
-
-                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                            <Border Background="#4CAF50" CornerRadius="15" Padding="10,5" Margin="0,0,0,10">
-                                                <TextBlock Text="ACTIVE" Foreground="White" FontWeight="Bold" 
-                                                          FontSize="12" HorizontalAlignment="Center"/>
-                                            </Border>
-                                            <Button Content="Xem danh sách" Background="#2196F3" Foreground="White" 
-                                                   BorderThickness="0" Padding="12,6" Margin="0,0,0,5"/>
-                                            <Button Content="Thống kê" Background="#FF9800" Foreground="White" 
-                                                   BorderThickness="0" Padding="12,6"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <DataGrid Name="EventDataGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                    CanUserAddRows="False" GridLinesVisibility="Horizontal">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Tên sự kiện" Width="250" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Địa điểm" Width="200" Binding="{Binding Location}"/>
+                            <DataGridTextColumn Header="Ngày tổ chức" Width="120" Binding="{Binding DonationDate}"/>
+                            <DataGridTextColumn Header="Số lượng đăng ký" Width="130" Binding="{Binding RegisteredMemberCount}"/>
+                            <DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
 
