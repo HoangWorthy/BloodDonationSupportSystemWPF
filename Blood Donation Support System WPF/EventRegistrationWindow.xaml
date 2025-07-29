@@ -1,0 +1,179 @@
+<Window x:Class="Blood_Donation_Support_System_WPF.EventRegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Blood_Donation_Support_System_WPF"
+        mc:Ignorable="d"
+        Title="Đăng ký tham gia sự kiện hiến máu" Height="600" Width="700"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="#F5F5F5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#4CAF50" CornerRadius="0,0,10,10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="🎯 Đăng ký tham gia sự kiện" 
+                          FontSize="20" FontWeight="Bold" 
+                          Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" Margin="30,20,30,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Event Information Section -->
+                <Border Background="White" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="📋 Thông tin sự kiện" FontSize="16" FontWeight="Bold" 
+                                  Foreground="#4CAF50" Margin="0,0,0,15"/>
+
+                        <!-- Event Name -->
+                        <TextBlock Name="EventNameTextBlock" Text="Tên sự kiện: " 
+                                  FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        
+                        <!-- Event Location -->
+                        <TextBlock Name="EventLocationTextBlock" Text="Địa điểm: " 
+                                  Foreground="#666" Margin="0,0,0,5"/>
+                        
+                        <!-- Event Date -->
+                        <TextBlock Name="EventDateTextBlock" Text="Ngày tổ chức: " 
+                                  Foreground="#666" Margin="0,0,0,5"/>
+                        
+                        <!-- Event Status -->
+                        <TextBlock Name="EventStatusTextBlock" Text="Trạng thái: " 
+                                  Foreground="#666" Margin="0,0,0,5"/>
+                        
+                        <!-- Registration Count -->
+                        <TextBlock Name="RegistrationCountTextBlock" Text="Số lượng đăng ký: " 
+                                  Foreground="#4CAF50" FontWeight="SemiBold" Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Registration Form Section -->
+                <Border Background="White" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="📝 Thông tin đăng ký" FontSize="16" FontWeight="Bold" 
+                                  Foreground="#4CAF50" Margin="0,0,0,15"/>
+
+                        <!-- Blood Type -->
+                        <TextBlock Text="Nhóm máu của bạn: *" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <ComboBox Name="BloodTypeComboBox" Height="35" FontSize="14" 
+                                 BorderBrush="#CCCCCC" BorderThickness="1" Margin="0,0,0,15">
+                            <ComboBoxItem Content="A+" IsSelected="True"/>
+                            <ComboBoxItem Content="A-"/>
+                            <ComboBoxItem Content="B+"/>
+                            <ComboBoxItem Content="B-"/>
+                            <ComboBoxItem Content="AB+"/>
+                            <ComboBoxItem Content="AB-"/>
+                            <ComboBoxItem Content="O+"/>
+                            <ComboBoxItem Content="O-"/>
+                        </ComboBox>
+
+                        <!-- Donation Type -->
+                        <TextBlock Text="Loại hiến máu: *" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <ComboBox Name="DonationTypeComboBox" Height="35" FontSize="14" 
+                                 BorderBrush="#CCCCCC" BorderThickness="1" Margin="0,0,0,15">
+                            <ComboBoxItem Content="Toàn phần" IsSelected="True"/>
+                            <ComboBoxItem Content="Tiểu cầu"/>
+                            <ComboBoxItem Content="Huyết tương"/>
+                            <ComboBoxItem Content="Hồng cầu"/>
+                        </ComboBox>
+
+                        <!-- Time Slot Selection -->
+                        <TextBlock Text="Chọn khung thời gian: *" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <ComboBox Name="TimeSlotComboBox" Height="35" FontSize="14" 
+                                 BorderBrush="#CCCCCC" BorderThickness="1" Margin="0,0,0,15"/>
+
+                        <!-- Available Time Slots Info -->
+                        <Border Background="#E8F5E8" CornerRadius="5" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="ℹ️ Thông tin khung thời gian" FontWeight="SemiBold" 
+                                          Foreground="#2E7D32" Margin="0,0,0,5"/>
+                                <TextBlock Name="TimeSlotInfoTextBlock" Text="Vui lòng chọn khung thời gian phù hợp" 
+                                          Foreground="#2E7D32" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Terms and Conditions -->
+                <Border Background="#FFF3E0" CornerRadius="5" Padding="15" Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Text="📋 Điều khoản và điều kiện" FontWeight="SemiBold" 
+                                  Foreground="#E65100" Margin="0,0,0,5"/>
+                        <TextBlock Text="• Bạn phải đủ 18 tuổi và có sức khỏe tốt để hiến máu" 
+                                  FontSize="12" Foreground="#E65100" Margin="0,0,0,2"/>
+                        <TextBlock Text="• Không ăn uống trong vòng 4 giờ trước khi hiến máu" 
+                                  FontSize="12" Foreground="#E65100" Margin="0,0,0,2"/>
+                        <TextBlock Text="• Mang theo CMND/CCCD khi đến hiến máu" 
+                                  FontSize="12" Foreground="#E65100" Margin="0,0,0,2"/>
+                        <TextBlock Text="• Có thể hủy đăng ký trước 24h so với thời gian hiến máu" 
+                                  FontSize="12" Foreground="#E65100"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Action Buttons -->
+        <Border Grid.Row="2" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
+                       VerticalAlignment="Center" Margin="0,0,30,0">
+                <Button Name="CancelButton" Content="❌ Hủy bỏ" Width="120" Height="40" 
+                       Margin="10,0" Background="#F44336" Foreground="White" 
+                       FontSize="14" FontWeight="SemiBold" BorderThickness="0" 
+                       Cursor="Hand" Click="Cancel_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                               CornerRadius="5" Padding="10">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#D32F2F"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Name="RegisterButton" Content="✅ Đăng ký" Width="140" Height="40" 
+                       Margin="10,0" Background="#4CAF50" Foreground="White" 
+                       FontSize="14" FontWeight="SemiBold" BorderThickness="0" 
+                       Cursor="Hand" Click="Register_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                               CornerRadius="5" Padding="10">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#388E3C"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window> 
