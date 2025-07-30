@@ -10,7 +10,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
@@ -38,7 +39,7 @@
         </Border>
 
         <!-- Main Content -->
-        <TabControl Grid.Row="1" Background="White">
+        <TabControl Grid.Row="1" Background="White" Grid.RowSpan="2">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="FontSize" Value="14"/>
@@ -67,7 +68,7 @@
                                       FontWeight="Bold" Foreground="#1976D2" VerticalAlignment="Center"/>
                             <Button Grid.Column="1" Name="AddBlogButton" Content="+ Thêm bài viết mới" 
                                    Background="#4CAF50" Foreground="White" BorderThickness="0" 
-                                   Padding="15,10" Cursor="Hand"/>
+                                   Padding="15,10" Cursor="Hand" Click="AddBlogButton_Click"/>
                         </Grid>
                     </Border>
 
@@ -78,17 +79,19 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Tiêu đề" Width="300" Binding="{Binding Title}"/>
-                            <DataGridTextColumn Header="Tác giả" Width="150" Binding="{Binding Author}"/>
+                            <DataGridTextColumn Header="Tác giả" Width="150" Binding="{Binding Author.Email}"/>
                             <DataGridTextColumn Header="Ngày tạo" Width="120" Binding="{Binding CreationDate}"/>
                             <DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
                             <DataGridTemplateColumn Header="Thao tác" Width="200">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Add Blog" Click="AddBlogButton_Click" Width="100" Margin="10"/>
+                                            
                                             <Button Content="Sửa" Background="#FF9800" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Click="UpdateBlogButton_Click"/>
                                             <Button Content="Xóa" Background="#F44336" Foreground="White" 
-                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
+                                                   BorderThickness="0" Padding="10,5" Margin="2" FontSize="12" Click="DeleteBlogButton_Click"/>
                                             <Button Content="Xem" Background="#2196F3" Foreground="White" 
                                                    BorderThickness="0" Padding="10,5" Margin="2" FontSize="12"/>
                                         </StackPanel>
