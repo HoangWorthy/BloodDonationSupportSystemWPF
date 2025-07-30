@@ -22,10 +22,10 @@ namespace BloodDonationSupportSystemWPF
             LoadAuthors();
         }
 
-        private async void LoadAuthors()
+        private void LoadAuthors()
         {
-            var accounts = await _accountService.GetAllAccountsAsync();
-            cbAuthor.ItemsSource = accounts.ToList();
+            var accounts = _accountService.GetAccounts();
+            cbAuthor.ItemsSource = accounts;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

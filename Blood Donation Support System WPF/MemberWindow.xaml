@@ -206,20 +206,52 @@
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Hiến máu tại Bệnh viện Chợ Rẫy" 
+                                            <!-- Bind to actual event data -->
+                                            <TextBlock Text="{Binding Name}" 
                                                       FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>
-                                            <TextBlock Text="📍 123 Nguyễn Huệ, Q.1, TP.HCM" 
-                                                      Foreground="#666" Margin="0,0,0,5"/>
-                                            <TextBlock Text="📅 25/07/2025 - 08:00 đến 17:00" 
-                                                      Foreground="#666" Margin="0,0,0,5"/>
-                                            <TextBlock Text="👥 Đã đăng ký: 45/100 người" 
-                                                      Foreground="#4CAF50" FontWeight="SemiBold"/>
+                                            <TextBlock Foreground="#666" Margin="0,0,0,5">
+                                                <Run Text="📍"/>
+                                                <Run Text="{Binding Location}"/>
+                                            </TextBlock>
+                                            <TextBlock Foreground="#666" Margin="0,0,0,5">
+                                                <Run Text="📅"/>
+                                                <Run Text="{Binding Date}"/>
+                                                <Run Text=" - "/>
+                                                <Run Text="{Binding TimeRange}"/>
+                                            </TextBlock>
+                                            <TextBlock Foreground="#4CAF50" FontWeight="SemiBold">
+                                                <Run Text="👥 Đã đăng ký: "/>
+                                                <Run Text="{Binding RegistrationCount}"/>
+                                                <Run Text=" người"/>
+                                            </TextBlock>
                                         </StackPanel>
 
-                                        <Button Grid.Column="1" Content="Đăng ký" 
-                                               Background="#4CAF50" Foreground="White" 
-                                               BorderThickness="0" Padding="20,10" 
-                                               VerticalAlignment="Center"/>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <!-- Show different button states based on registration status -->
+                                            <Button Content="Đăng ký" 
+                                                   Background="#4CAF50" Foreground="White" 
+                                                   BorderThickness="0" Padding="20,10" 
+                                                   Click="RegisterForEvent_Click"
+                                                   Visibility="{Binding CanRegister, Converter={x:Static local:BooleanToVisibilityConverter.Instance}}"/>
+
+                                            <Button Content="Đã đăng ký" 
+                                                   Background="#9E9E9E" Foreground="White" 
+                                                   BorderThickness="0" Padding="20,10" 
+                                                   IsEnabled="False"
+                                                   Visibility="{Binding IsUserRegistered, Converter={x:Static local:BooleanToVisibilityConverter.Instance}}"/>
+
+                                            <Button Content="Đã đầy" 
+                                                   Background="#F44336" Foreground="White" 
+                                                   BorderThickness="0" Padding="20,10" 
+                                                   IsEnabled="False"
+                                                   Visibility="{Binding IsFull, Converter={x:Static local:BooleanToVisibilityConverter.Instance}}"/>
+
+                                            <Button Content="Chi tiết" 
+                                                   Background="#2196F3" Foreground="White" 
+                                                   BorderThickness="0" Padding="20,10" 
+                                                   Margin="0,5,0,0"
+                                                   Click="ViewEventDetails_Click"/>
+                                        </StackPanel>
                                     </Grid>
                                 </Border>
                             </DataTemplate>

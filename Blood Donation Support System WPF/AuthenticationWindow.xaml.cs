@@ -17,9 +17,7 @@ namespace Blood_Donation_Support_System_WPF
         {
             InitializeComponent();
 
-            var context = new BloodDonationSupportSystemContext();
-            var accountRepo = new AccountRepository(context);
-            _accountService = new AccountService(accountRepo);
+            _accountService = new AccountService();
 
             LoginButton.Click += LoginButton_Click;
             RegisterButton.Click += RegisterButton_Click;
@@ -33,14 +31,21 @@ namespace Blood_Donation_Support_System_WPF
             var account = _accountService.Login(email, password);
             if (account != null)
             {
-                Window nextWindow;
                 if (account.Role == "MEMBER")
                 {
-                    nextWindow = new MemberWindow();
+                    MemberWindow memberWindow = new MemberWindow();
+                    memberWindow.Show();
                 }
-                else if (account.Role == "STAFF" || account.Role == "ADMIN")
+                else if (account.Role == "STAFF")
                 {
-                    nextWindow = new StaffWindow();
+                    StaffWindow staffWindow = new StaffWindow();
+                    staffWindow.account = account;
+                    staffWindow.Show();
+                }
+                else if (account.Role == "ADMIN")
+                {
+                    AdminWindow adminWindow = new AdminWindow();
+                    adminWindow.Show();
                 }
                 else
                 {
@@ -48,7 +53,6 @@ namespace Blood_Donation_Support_System_WPF
                     return;
                 }
 
-                nextWindow.Show();
                 this.Close();
             }
             else

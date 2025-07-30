@@ -13,3 +13,18 @@ C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\DA
 C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\DAL\obj\Debug\net9.0\DAL.pdb
 C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\DAL\obj\Debug\net9.0\DAL.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\DAL\obj\Debug\net9.0\ref\DAL.dll
+D:\Blood Donation Support System\DAL\bin\Debug\net9.0\DAL.deps.json
+D:\Blood Donation Support System\DAL\bin\Debug\net9.0\DAL.runtimeconfig.json
+D:\Blood Donation Support System\DAL\bin\Debug\net9.0\DAL.dll
+D:\Blood Donation Support System\DAL\bin\Debug\net9.0\DAL.pdb
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.csproj.AssemblyReference.cache
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.AssemblyInfoInputs.cache
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.AssemblyInfo.cs
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.csproj.CoreCompileInputs.cache
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.sourcelink.json
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.dll
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\refint\DAL.dll
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.pdb
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\DAL.genruntimeconfig.cache
+D:\Blood Donation Support System\DAL\obj\Debug\net9.0\ref\DAL.dll

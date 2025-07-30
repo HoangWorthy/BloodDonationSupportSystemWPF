@@ -8,5 +8,6 @@ namespace DAL.Repositories
         bool EmailExists(string email);
         void Add(Account account);
         void Save();
+        List<Account> GetAccounts();
     }
 }

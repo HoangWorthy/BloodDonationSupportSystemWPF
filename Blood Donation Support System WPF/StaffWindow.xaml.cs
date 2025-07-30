@@ -31,7 +31,7 @@ namespace Blood_Donation_Support_System_WPF
         private readonly BloodRequestService _bloodRequestService;
         private readonly BloodStockService _bloodStockService;
         private readonly IBlogService _blogService;
-
+        public Account account{ get; set; }
         public StaffWindow()
         {
             InitializeComponent();
@@ -53,6 +53,7 @@ namespace Blood_Donation_Support_System_WPF
         {
             var modal = new AddDonationEventWindow();
             modal.Owner = this;
+            modal.CurrentUserId = account.Id;
             modal.InitializeDefaults();
 
             if (modal.ShowDialog() == true)

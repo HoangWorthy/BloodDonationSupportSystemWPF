@@ -3,6 +3,7 @@ using BLL.Services.Implementations;
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Blood_Donation_Support_System_WPF
     {
         private readonly IDonationEventService donationEventService;
         private readonly IEventRegistrationService eventRegistrationService;
-        
+
         public long CurrentUserId { get; set; } = 1; // This should be set from the logged-in user
         private List<DonationEvent> allEvents;
         private List<DonationEvent> filteredEvents;
@@ -40,20 +41,28 @@ namespace Blood_Donation_Support_System_WPF
 
         private void SetupEventHandlers()
         {
-            if (EventSearchTextBox != null)
+            // Handle the placeholder text for search box
+            EventSearchTextBox.GotFocus += (s, e) =>
             {
-                EventSearchTextBox.TextChanged += EventSearchTextBox_TextChanged;
-            }
+                if (EventSearchTextBox.Text == "Tìm kiếm sự kiện...")
+                {
+                    EventSearchTextBox.Text = "";
+                    EventSearchTextBox.Foreground = Brushes.Black;
+                }
+            };
 
-            if (CityFilterComboBox != null)
+            EventSearchTextBox.LostFocus += (s, e) =>
             {
-                CityFilterComboBox.SelectionChanged += CityFilterComboBox_SelectionChanged;
-            }
+                if (string.IsNullOrWhiteSpace(EventSearchTextBox.Text))
+                {
+                    EventSearchTextBox.Text = "Tìm kiếm sự kiện...";
+                    EventSearchTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0x99, 0x99, 0x99));
+                }
+            };
 
-            if (SearchButton != null)
-            {
-                SearchButton.Click += SearchButton_Click;
-            }
+            EventSearchTextBox.TextChanged += EventSearchTextBox_TextChanged;
+            CityFilterComboBox.SelectionChanged += CityFilterComboBox_SelectionChanged;
+            SearchButton.Click += SearchButton_Click;
         }
 
         private void LoadEvents()
@@ -66,29 +75,40 @@ namespace Blood_Donation_Support_System_WPF
 
                 filteredEvents = new List<DonationEvent>(allEvents);
                 DisplayEvents();
+                UpdateEventCount();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải danh sách sự kiện: {ex.Message}", "Lỗi", 
+                MessageBox.Show($"Lỗi khi tải danh sách sự kiện: {ex.Message}", "Lỗi",
                               MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void DisplayEvents()
         {
-            if (EventsListView == null) return;
-
             EventsListView.ItemsSource = filteredEvents.Select(eventItem => new EventDisplayModel
             {
                 Event = eventItem,
                 Name = eventItem.Name,
-                Location = eventItem.Location,
+                Location = GetFullLocation(eventItem),
                 Date = eventItem.DonationDate.ToString("dd/MM/yyyy"),
                 TimeRange = GetEventTimeRange(eventItem),
-                RegistrationCount = $"{eventRegistrationService.GetRegistrationCountByEvent(eventItem.Id)}/{eventItem.TotalMemberCount}",
-                IsFull = eventRegistrationService.IsEventFull(eventItem.Id),
-                IsUserRegistered = eventRegistrationService.IsUserRegisteredForEvent(CurrentUserId, eventItem.Id)
-            });
+                RegistrationCount = GetRegistrationCountString(eventItem),
+                IsFull = IsEventFull(eventItem),
+                IsUserRegistered = IsUserRegisteredForEvent(eventItem)
+            }).ToList();
+        }
+
+        private string GetFullLocation(DonationEvent eventItem)
+        {
+            var location = eventItem.Address;
+            if (!string.IsNullOrEmpty(eventItem.Ward))
+                location += $", {eventItem.Ward}";
+            if (!string.IsNullOrEmpty(eventItem.District))
+                location += $", {eventItem.District}";
+            if (!string.IsNullOrEmpty(eventItem.City))
+                location += $", {eventItem.City}";
+            return location;
         }
 
         private string GetEventTimeRange(DonationEvent donationEvent)
@@ -99,12 +119,58 @@ namespace Blood_Donation_Support_System_WPF
             var firstSlot = donationEvent.DonationTimeSlots.OrderBy(x => x.StartTime).First();
             var lastSlot = donationEvent.DonationTimeSlots.OrderByDescending(x => x.EndTime).First();
 
-            return $"{firstSlot.StartTime:HH:mm} - {lastSlot.EndTime:HH:mm}";
+            return $"{firstSlot.StartTime:HH:mm} đến {lastSlot.EndTime:HH:mm}";
+        }
+
+        private string GetRegistrationCountString(DonationEvent eventItem)
+        {
+            try
+            {
+                int registeredCount = eventRegistrationService?.GetRegistrationCountByEvent(eventItem.Id) ?? eventItem.RegisteredMemberCount;
+                return $"{registeredCount}/{eventItem.TotalMemberCount}";
+            }
+            catch
+            {
+                return $"{eventItem.RegisteredMemberCount}/{eventItem.TotalMemberCount}";
+            }
+        }
+
+        private bool IsEventFull(DonationEvent eventItem)
+        {
+            try
+            {
+                int registeredCount = eventRegistrationService?.GetRegistrationCountByEvent(eventItem.Id) ?? eventItem.RegisteredMemberCount;
+                return registeredCount >= eventItem.TotalMemberCount;
+            }
+            catch
+            {
+                return eventItem.RegisteredMemberCount >= eventItem.TotalMemberCount;
+            }
+        }
+
+        private bool IsUserRegisteredForEvent(DonationEvent eventItem)
+        {
+            try
+            {
+                return eventRegistrationService?.IsUserRegisteredForEvent(CurrentUserId, eventItem.Id) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void UpdateEventCount()
+        {
+            EventCountText.Text = filteredEvents.Count.ToString();
         }
 
         private void EventSearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ApplyFilters();
+            if (EventSearchTextBox.Text != "Tìm kiếm sự kiện...")
+            {
+                ApplyFilters();
+            }
         }
 
         private void CityFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -121,8 +187,10 @@ namespace Blood_Donation_Support_System_WPF
         {
             if (allEvents == null) return;
 
-            var searchText = EventSearchTextBox?.Text?.ToLower() ?? "";
-            var selectedCity = CityFilterComboBox?.SelectedItem as ComboBoxItem;
+            var searchText = EventSearchTextBox.Text?.ToLower() ?? "";
+            if (searchText == "tìm kiếm sự kiện...") searchText = "";
+
+            var selectedCity = CityFilterComboBox.SelectedItem as ComboBoxItem;
 
             filteredEvents = allEvents.Where(eventItem =>
             {
@@ -130,10 +198,10 @@ namespace Blood_Donation_Support_System_WPF
                 bool matchesSearch = string.IsNullOrEmpty(searchText) ||
                                    eventItem.Name.ToLower().Contains(searchText) ||
                                    eventItem.Hospital?.ToLower().Contains(searchText) == true ||
-                                   eventItem.Location.ToLower().Contains(searchText);
+                                   eventItem.Address.ToLower().Contains(searchText);
 
                 // City filter
-                bool matchesCity = selectedCity == null || 
+                bool matchesCity = selectedCity == null ||
                                  selectedCity.Content.ToString() == "Tất cả thành phố" ||
                                  eventItem.City == selectedCity.Content.ToString();
 
@@ -141,6 +209,7 @@ namespace Blood_Donation_Support_System_WPF
             }).ToList();
 
             DisplayEvents();
+            UpdateEventCount();
         }
 
         public void RegisterForEvent_Click(object sender, RoutedEventArgs e)
@@ -155,7 +224,7 @@ namespace Blood_Donation_Support_System_WPF
                 // Check if user is already registered
                 if (eventModel.IsUserRegistered)
                 {
-                    MessageBox.Show("Bạn đã đăng ký cho sự kiện này.", "Thông báo", 
+                    MessageBox.Show("Bạn đã đăng ký cho sự kiện này.", "Thông báo",
                                   MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
@@ -163,28 +232,28 @@ namespace Blood_Donation_Support_System_WPF
                 // Check if event is full
                 if (eventModel.IsFull)
                 {
-                    MessageBox.Show("Sự kiện đã đầy.", "Thông báo", 
+                    MessageBox.Show("Sự kiện đã đầy.", "Thông báo",
                                   MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                // Open registration window
+                // Open registration window (if you have one)
                 var registrationWindow = new EventRegistrationWindow();
                 registrationWindow.CurrentUserId = CurrentUserId;
                 registrationWindow.InitializeEvent(eventModel.Event);
                 registrationWindow.Owner = this;
 
-                if (registrationWindow.ShowDialog() == true && registrationWindow.RegistrationSuccessful)
+                if (registrationWindow.ShowDialog() == true)
                 {
                     // Refresh the events list
                     LoadEvents();
-                    MessageBox.Show("Đăng ký thành công!", "Thành công", 
+                    MessageBox.Show("Đăng ký thành công!", "Thành công",
                                   MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Lỗi", 
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Lỗi",
                               MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -198,11 +267,13 @@ namespace Blood_Donation_Support_System_WPF
 
             // Show event details in a message box (you can create a separate window for this)
             var details = $"Tên sự kiện: {eventModel.Event.Name}\n" +
-                         $"Địa điểm: {eventModel.Event.Location}\n" +
+                         $"Địa điểm: {eventModel.Location}\n" +
                          $"Ngày tổ chức: {eventModel.Event.DonationDate:dd/MM/yyyy}\n" +
+                         $"Thời gian: {eventModel.TimeRange}\n" +
                          $"Loại hiến máu: {eventModel.Event.DonationType}\n" +
+                         $"Bệnh viện: {eventModel.Event.Hospital}\n" +
                          $"Trạng thái: {eventModel.Event.Status}\n" +
-                         $"Số lượng đăng ký: {eventRegistrationService.GetRegistrationCountByEvent(eventModel.Event.Id)}/{eventModel.Event.TotalMemberCount}";
+                         $"Số lượng đăng ký: {eventModel.RegistrationCount}";
 
             MessageBox.Show(details, "Chi tiết sự kiện", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -220,5 +291,29 @@ namespace Blood_Donation_Support_System_WPF
         public bool IsFull { get; set; }
         public bool IsUserRegistered { get; set; }
         public bool CanRegister => !IsFull && !IsUserRegistered;
+    }
+
+    // Converter class for boolean to visibility
+    public class BooleanToVisibilityConverter : IValueConverter
+    {
+        public static readonly BooleanToVisibilityConverter Instance = new BooleanToVisibilityConverter();
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool boolValue)
+            {
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            }
+            return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Visibility visibility)
+            {
+                return visibility == Visibility.Visible;
+            }
+            return false;
+        }
     }
 }

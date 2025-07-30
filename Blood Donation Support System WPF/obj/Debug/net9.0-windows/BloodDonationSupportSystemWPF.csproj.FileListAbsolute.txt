@@ -168,3 +168,7 @@ C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\Bl
 C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodDonationSupportSystemWPF.pdb
 C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\Blood Donation Support System WPF\obj\Debug\net9.0-windows\BloodDonationSupportSystemWPF.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\Blood Donation Support System WPF\obj\Debug\net9.0-windows\ref\BloodDonationSupportSystemWPF.dll
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\AddBlogWindow.baml
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\AddBlogWindow.g.cs
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\EventRegistrationWindow.g.cs
+D:\Blood Donation Support System\Blood Donation Support System WPF\obj\Debug\net9.0-windows\EventRegistrationWindow.baml

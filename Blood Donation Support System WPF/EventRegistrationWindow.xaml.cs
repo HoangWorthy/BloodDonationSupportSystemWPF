@@ -26,7 +26,7 @@ namespace Blood_Donation_Support_System_WPF
         private readonly IDonationEventService donationEventService;
         
         public DonationEvent SelectedEvent { get; set; }
-        public long CurrentUserId { get; set; } = 1; // This should be set from the logged-in user
+        public long CurrentUserId { get; set; }
         public bool RegistrationSuccessful { get; set; } = false;
 
         public EventRegistrationWindow()
@@ -47,17 +47,14 @@ namespace Blood_Donation_Support_System_WPF
         {
             if (SelectedEvent == null) return;
 
-            // Display event information
             EventNameTextBlock.Text = $"Tên sự kiện: {SelectedEvent.Name}";
             EventLocationTextBlock.Text = $"Địa điểm: {SelectedEvent.Location}";
             EventDateTextBlock.Text = $"Ngày tổ chức: {SelectedEvent.DonationDate:dd/MM/yyyy}";
             EventStatusTextBlock.Text = $"Trạng thái: {SelectedEvent.Status}";
 
-            // Get current registration count
             var currentRegistrations = eventRegistrationService.GetRegistrationCountByEvent(SelectedEvent.Id);
             RegistrationCountTextBlock.Text = $"Số lượng đăng ký: {currentRegistrations}/{SelectedEvent.TotalMemberCount} người";
 
-            // Update registration count color based on capacity
             if (currentRegistrations >= SelectedEvent.TotalMemberCount)
             {
                 RegistrationCountTextBlock.Foreground = Brushes.Red;
@@ -139,13 +136,11 @@ namespace Blood_Donation_Support_System_WPF
         {
             try
             {
-                // Validate inputs
                 if (!ValidateInputs())
                 {
                     return;
                 }
 
-                // Get selected values
                 var bloodType = ((ComboBoxItem)BloodTypeComboBox.SelectedItem)?.Content?.ToString() ?? "";
                 var donationType = ((ComboBoxItem)DonationTypeComboBox.SelectedItem)?.Content?.ToString() ?? "";
                 var selectedTimeSlot = (TimeSlotComboBox.SelectedItem as ComboBoxItem)?.Tag as DonationTimeSlot;
@@ -156,7 +151,6 @@ namespace Blood_Donation_Support_System_WPF
                     return;
                 }
 
-                // Attempt to register
                 var success = eventRegistrationService.RegisterForEvent(
                     CurrentUserId, 
                     SelectedEvent.Id, 
@@ -189,37 +183,31 @@ namespace Blood_Donation_Support_System_WPF
         {
             var errorMessages = new List<string>();
 
-            // Validate Blood Type
             if (BloodTypeComboBox.SelectedItem == null)
             {
                 errorMessages.Add("• Vui lòng chọn nhóm máu");
             }
 
-            // Validate Donation Type
             if (DonationTypeComboBox.SelectedItem == null)
             {
                 errorMessages.Add("• Vui lòng chọn loại hiến máu");
             }
 
-            // Validate Time Slot
             if (TimeSlotComboBox.SelectedItem == null)
             {
                 errorMessages.Add("• Vui lòng chọn khung thời gian");
             }
 
-            // Check if event is still active
             if (!eventRegistrationService.IsEventActive(SelectedEvent.Id))
             {
                 errorMessages.Add("• Sự kiện không còn hoạt động");
             }
 
-            // Check if user is already registered
             if (eventRegistrationService.IsUserRegisteredForEvent(CurrentUserId, SelectedEvent.Id))
             {
                 errorMessages.Add("• Bạn đã đăng ký cho sự kiện này");
             }
 
-            // Show validation errors if any
             if (errorMessages.Any())
             {
                 string message = "Vui lòng sửa các lỗi sau:\n\n" + string.Join("\n", errorMessages);

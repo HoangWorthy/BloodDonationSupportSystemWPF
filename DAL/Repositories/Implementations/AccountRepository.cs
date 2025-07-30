@@ -10,9 +10,9 @@ namespace DAL.Repositories.Implementations
     {
         private readonly BloodDonationSupportSystemContext _context;
 
-        public AccountRepository(BloodDonationSupportSystemContext context)
+        public AccountRepository()
         {
-            _context = context;
+            _context = new BloodDonationSupportSystemContext();
         }
 
         public Account? GetByEmailAndPassword(string email, string password)
@@ -28,6 +28,11 @@ namespace DAL.Repositories.Implementations
         public void Add(Account account)
         {
             _context.Accounts.Add(account);
+        }
+
+        public List<Account> GetAccounts()
+        {
+            return _context.Accounts.ToList();
         }
 
         public void Save()

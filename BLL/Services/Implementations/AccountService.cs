@@ -2,6 +2,7 @@
 using BLL.Services.Implementations;
 using DAL.Entities;
 using DAL.Repositories;
+using DAL.Repositories.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace BLL.Services.Implementations
     {
         private readonly IAccountRepository _repository;
 
-        public AccountService(IAccountRepository repository)
+        public AccountService()
         {
-            _repository = repository;
+            _repository = new AccountRepository();
         }
 
         public Account? Login(string email, string password)
@@ -35,6 +36,11 @@ namespace BLL.Services.Implementations
         public bool EmailExists(string email)
         {
             return _repository.EmailExists(email);
+        }
+
+        public List<Account> GetAccounts()
+        {
+            return _repository.GetAccounts();
         }
     }
 }
