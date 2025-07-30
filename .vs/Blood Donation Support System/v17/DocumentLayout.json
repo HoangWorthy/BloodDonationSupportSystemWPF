@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator\\source\\repos\\HoangWorthy\\BloodDonationSupportSystemWPF\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Blood Donation Support System\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{05D98005-7E86-42B5-A24C-ACCED61BC0E0}|DAL\\DAL.csproj|d:\\blood donation support system\\dal\\repositories\\implementations\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05D98005-7E86-42B5-A24C-ACCED61BC0E0}|DAL\\DAL.csproj|solutionrelative:dal\\repositories\\implementations\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\authenticationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\authenticationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|d:\\blood donation support system\\blood donation support system wpf\\authenticationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{41794CE7-C8E6-4E05-94C3-5CF7B745A504}|Blood Donation Support System WPF\\BloodDonationSupportSystemWPF.csproj|solutionrelative:blood donation support system wpf\\authenticationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,15 +22,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Bookmark",
@@ -64,8 +85,42 @@
               "Name": "ST:131:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountRepository.cs",
+              "DocumentMoniker": "D:\\Blood Donation Support System\\DAL\\Repositories\\Implementations\\AccountRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Repositories\\Implementations\\AccountRepository.cs",
+              "ToolTip": "D:\\Blood Donation Support System\\DAL\\Repositories\\Implementations\\AccountRepository.cs",
+              "RelativeToolTip": "DAL\\Repositories\\Implementations\\AccountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T21:27:36.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthenticationWindow.xaml",
+              "DocumentMoniker": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\AuthenticationWindow.xaml",
+              "RelativeDocumentMoniker": "Blood Donation Support System WPF\\AuthenticationWindow.xaml",
+              "ToolTip": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\AuthenticationWindow.xaml",
+              "RelativeToolTip": "Blood Donation Support System WPF\\AuthenticationWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-30T21:26:36.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthenticationWindow.xaml.cs",
+              "DocumentMoniker": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\AuthenticationWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Blood Donation Support System WPF\\AuthenticationWindow.xaml.cs",
+              "ToolTip": "D:\\Blood Donation Support System\\Blood Donation Support System WPF\\AuthenticationWindow.xaml.cs",
+              "RelativeToolTip": "Blood Donation Support System WPF\\AuthenticationWindow.xaml.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T21:26:20.364Z",
+              "EditorCaption": ""
             }
           ]
         }
