@@ -1,8 +1,10 @@
 ﻿using BLL.Services;
 using BLL.Services.Implementations;
-using DAL.Entities;
 using BLL.Services.Implementations;
+using BloodDonationSupportSystemWPF;
 using DAL.Entities;
+using DAL.Entities;
+using DAL.Repositories;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,7 @@ namespace Blood_Donation_Support_System_WPF
         private readonly IDonationEventService donationEventService;
         private readonly BloodRequestService _bloodRequestService;
         private readonly BloodStockService _bloodStockService;
+        private readonly IBlogService _blogService;
 
         public StaffWindow()
         {
@@ -36,7 +39,11 @@ namespace Blood_Donation_Support_System_WPF
             LoadDonationEvent();
             _bloodRequestService = new BloodRequestService();
             _bloodStockService = new BloodStockService();
+            _blogService = new BlogService();
             LoadBloodRequest();
+            LoadBlog();
+            CreateSampleData(); // Tạo dữ liệu mẫu nếu cần
+            CheckDatabaseTables(); // Kiểm tra database khi khởi động
         }
         private void LoadDonationEvent()
         {
@@ -184,6 +191,146 @@ namespace Blood_Donation_Support_System_WPF
             {
                 var detailWindow = new BloodRequestDetailWindow(request);
                 detailWindow.ShowDialog();
+            }
+        }
+
+        private void LoadBlog()
+        {
+            BlogDataGrid.ItemsSource = _blogService.GetBlogs();
+        }
+
+        private void CreateSampleData()
+        {
+            try
+            {
+                using (var context = new DAL.Entities.BloodDonationSupportSystemContext())
+                {
+                    // Kiểm tra xem đã có data chưa
+                    if (context.Accounts.Any())
+                    {
+                        return; // Đã có data, không cần tạo thêm
+                    }
+
+                    // Tạo Profile mẫu
+                    var sampleProfile = new DAL.Entities.Profile
+                    {
+                        Name = "Staff",
+                        Phone = "0123456789",
+                        Address = "123 Test Street",
+                        DateOfBirth = System.DateOnly.FromDateTime(DateTime.Now.AddYears(-25))
+                    };
+                    context.Profiles.Add(sampleProfile);
+                    context.SaveChanges();
+
+                    // Tạo Account mẫu
+                    var sampleAccount = new DAL.Entities.Account
+                    {
+                        Email = "staff@test.com",
+                        Password = "123456",
+                        Role = "STAFF",
+                        Status = "ENABLE",
+                        ProfileId = sampleProfile.Id
+                    };
+                    context.Accounts.Add(sampleAccount);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Đã tạo dữ liệu mẫu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tạo dữ liệu mẫu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CheckDatabaseTables()
+        {
+            try
+            {
+                using (var context = new DAL.Entities.BloodDonationSupportSystemContext())
+                {
+                    var accountCount = context.Accounts.Count();
+                    var blogCount = context.Blogs.Count();
+                    
+                    var info = $"Database Status:\n- Accounts: {accountCount}\n- Blogs: {blogCount}";
+                    MessageBox.Show(info, "Database Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi kiểm tra database: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private long GetValidAuthorId()
+        {
+            try
+            {
+                using (var context = new DAL.Entities.BloodDonationSupportSystemContext())
+                {
+                    // Kiểm tra kết nối database
+                    if (!context.Database.CanConnect())
+                    {
+                        MessageBox.Show("Không thể kết nối đến database!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return 1;
+                    }
+                    
+                    var accounts = context.Accounts.ToList();
+                    if (!accounts.Any())
+                    {
+                        MessageBox.Show("Không có account nào trong database!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return 1;
+                    }
+                    
+                    var firstAccount = accounts.First();
+                    return firstAccount.Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi lấy AuthorId: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return 1; // Fallback value
+            }
+        }
+
+        private void AddBlogButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            // Truyền vào cửa sổ
+            var addWindow = new AddBlogWindow();
+            var result = addWindow.ShowDialog();
+
+            if (result == true)
+            {
+                LoadBlog(); // Hoặc hàm bạn cần gọi lại
+            }
+        }
+
+
+
+
+        private void UpdateBlogButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (BlogDataGrid.SelectedItem is DAL.Entities.Blog selectedBlog)
+            {
+                // TODO: Hiển thị cửa sổ chỉnh sửa Blog (tùy chỉnh giao diện theo ý bạn)
+                selectedBlog.Title = "Tiêu đề đã sửa";
+                selectedBlog.LastModifiedDate = System.DateOnly.FromDateTime(DateTime.Now);
+                _blogService.UpdateBlog(selectedBlog);
+                LoadBlog();
+            }
+        }
+
+        private void DeleteBlogButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (BlogDataGrid.SelectedItem is DAL.Entities.Blog selectedBlog)
+            {
+                var confirm = MessageBox.Show($"Xác nhận xóa bài viết '{selectedBlog.Title}'?", "Xác nhận", MessageBoxButton.YesNo);
+                if (confirm == MessageBoxResult.Yes)
+                {
+                    _blogService.RemoveBlog(selectedBlog);
+                    LoadBlog();
+                }
             }
         }
 
