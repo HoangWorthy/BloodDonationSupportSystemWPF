@@ -1,0 +1,20 @@
+﻿BloodDonationSupportSystemWPF
+
+
+winexe
+C#
+.cs
+C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\Blood Donation Support System WPF\obj\Release\net9.0-windows\
+Blood_Donation_Support_System_WPF
+none
+false
+TRACE;RELEASE;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\Administrator\source\repos\HoangWorthy\BloodDonationSupportSystemWPF\Blood Donation Support System WPF\App.xaml
+8151417077
+
+11382087069
+237243202967
+AddBloodRequestWindow.xaml;AddDonationEventWindow.xaml;AdminWindow.xaml;AuthenticationWindow.xaml;BloodRequestDetailWindow.xaml;MemberWindow.xaml;StaffWindow.xaml;UpdateBloodRequestWindow.xaml;
+
+True
+

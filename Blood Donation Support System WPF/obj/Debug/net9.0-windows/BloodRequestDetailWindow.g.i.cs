@@ -52,11 +52,7 @@ namespace Blood_Donation_Support_System_WPF {
                 return;
             }
             _contentLoaded = true;
-<<<<<<< HEAD
-            System.Uri resourceLocater = new System.Uri("/BloodDonationSupportSystemWPF;component/bloodrequestdetailwindow.xaml", System.UriKind.Relative);
-=======
             System.Uri resourceLocater = new System.Uri("/BloodDonationSupportSystemWPF;V1.0.0.0;component/bloodrequestdetailwindow.xaml", System.UriKind.Relative);
->>>>>>> f18b6d2 (Added missing files)
             
             #line 1 "..\..\..\BloodRequestDetailWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

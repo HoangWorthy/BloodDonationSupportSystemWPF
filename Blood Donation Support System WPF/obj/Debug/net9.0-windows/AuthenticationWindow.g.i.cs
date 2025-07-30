@@ -165,7 +165,7 @@ namespace Blood_Donation_Support_System_WPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BloodDonationSupportSystemWPF;component/authenticationwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BloodDonationSupportSystemWPF;V1.0.0.0;component/authenticationwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\AuthenticationWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

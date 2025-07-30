@@ -4,59 +4,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Repositories.Implementations
 {
-    public class AccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private readonly BloodDonationSupportSystemContext _context;
 
-        public AccountRepository()
+        public AccountRepository(BloodDonationSupportSystemContext context)
         {
-            _context = new BloodDonationSupportSystemContext();
+            _context = context;
         }
 
-        public async Task<IEnumerable<Account>> GetAllAsync()
+        public Account? GetByEmailAndPassword(string email, string password)
         {
-            return await _context.Set<Account>().ToListAsync();
+            return _context.Accounts.FirstOrDefault(a => a.Email == email && a.Password == password);
         }
 
-        public async Task<Account?> GetByIdAsync(long id)
+        public bool EmailExists(string email)
         {
-            return await _context.Set<Account>()
-                .Include(a => a.Profile)
-                .Include(a => a.Blogs)
-                .Include(a => a.BloodUnits)
-                .Include(a => a.DonationEvents)
-                .Include(a => a.EventRegistrations)
-                .FirstOrDefaultAsync(a => a.Id == id);
+            return _context.Accounts.Any(a => a.Email == email);
         }
 
-        public async Task AddAsync(Account account)
+        public void Add(Account account)
         {
-            await _context.Set<Account>().AddAsync(account);
-            await _context.SaveChangesAsync();
+            _context.Accounts.Add(account);
         }
 
-        public async Task UpdateAsync(Account account)
+        public void Save()
         {
-            _context.Set<Account>().Update(account);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(long id)
-        {
-            var account = await _context.Set<Account>().FindAsync(id);
-            if (account != null)
-            {
-                _context.Set<Account>().Remove(account);
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        public async Task<Account?> GetByEmailAsync(string email)
-        {
-            return await _context.Set<Account>()
-                .FirstOrDefaultAsync(a => a.Email == email);
+            _context.SaveChanges();
         }
     }
 }
